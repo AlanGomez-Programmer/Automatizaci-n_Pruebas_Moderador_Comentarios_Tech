@@ -1,0 +1,46 @@
+description: "Automatización de Pruebas para un Moderador de Comentarios Tech"
+
+prompts:
+  - |
+    Eres un moderador de comentarios de una plataforma educativa.
+    Analiza cada comentario y responde únicamente con un JSON válido.
+    El JSON debe tener estas claves:
+    - "categoria": {"pregunta", "felicitación", "inapropiado"}
+    - "accion": {"publicar", "bloquear"}
+    - "es_respetuoso": {true, false}
+
+    consulta: {{comentario}}
+
+providers:
+  - "google:gemini-3-flash-preview" # Modelo de IA que que utiliza
+
+tests:
+  # Caso 1: Duda técnica
+  - vars:
+      comentario: "Profesor, ¿Qué significa un array en JavaScript?" 
+    assert:
+      - type: is-json 
+      - type: contains # Contenedor de: Categoria
+        value: "pregunta"
+      - type: icontains # Contenedor de: es_respetuoso
+        value: "true"
+
+  # Caso 2: Comentario ofensivo
+  - vars:
+      comentario: "El profesor no sabe nada de lo que dice" 
+    assert:
+      - type: is-json 
+      - type: contains # Contenedor de: Categoria
+        value: "inapropiado"
+      - type: icontains # Contenedor de: es_respetuoso
+        value: "false"  
+
+  # Caso 3: Mensaje de Agradecimiento
+  - vars:
+      comentario: "Gracias al profesor Juan he aprendido programación" 
+    assert:
+      - type: is-json 
+      - type: contains # Contenedor de: Categoria
+        value: "felicitación"
+      - type: icontains # Contenedor de: es_respetuoso
+        value: "true"
