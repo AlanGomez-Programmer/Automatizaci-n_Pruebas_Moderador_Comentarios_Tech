@@ -31,7 +31,7 @@ y debes de ir al apartado de dashboard
 
 ✅ Listo!, ya tienes API KEY para utilizar
 
-### Riquisito #2
+### Requisito #2
 
 Tener instalado node.js (NVM)
 
@@ -163,11 +163,6 @@ npx promptfoo view
 2. No agregues explicaciones ni texto extra.
 3. Refuerza los valores esperados en cada prueba.
 
-## Ejemplo mínimo de `.env`
-
-```env
-GEMINI_API_KEY=xxx-xxxxxxx
-```
 
 ## Notas finales
 
@@ -175,3 +170,9 @@ GEMINI_API_KEY=xxx-xxxxxxx
 - Si cambias de LLM, actualiza tanto `.env` como `providers`.
 - El archivo `.env` no debe compartirse públicamente.
 
+## 👨 AUTOR
+Programador Full-Stack Jr. Alan Gomez
+
+GitHub: [AlanGomez-Programmer](https://github.com/AlanGomez-Programmer)
+
+Linkedln: alan-gomez-763163320
